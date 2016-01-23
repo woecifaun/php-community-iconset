@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# changing for..in delimiter
+OLDIFS=$IFS
+IFS=$'\n'
+i=0
+
+
+# Create destination directory
+dest="./generated/mac";
+if [[ ! -d $dest ]]; then
+    mkdir -p $dest;
+fi
+
+# Generate iconsets for mac OS X
+for dir in `find ./src -type d`
+do
+    current=`basename $dir`;
+
+    # Skipping src directory
+    if [[ "$current" == 'src' ]]; then
+        continue;
+    fi
+
+    echo "Generating Mac iconset for $current";
+
+    iconset="./$current.iconset"
+
+    if [[ ! -d $iconset ]]; then
+        mkdir $iconset;
+    fi
+
+    cp ./src/$current/16.png   $iconset/icon_16x16.png;
+    cp ./src/$current/32.png   $iconset/icon_16x16@2x.png;
+    cp ./src/$current/32.png   $iconset/icon_32x32.png;
+    cp ./src/$current/64.png   $iconset/icon_32x32@2x.png;
+    cp ./src/$current/128.png  $iconset/icon_128x128.png;
+    cp ./src/$current/256.png  $iconset/icon_128x128@2x.png;
+    cp ./src/$current/256.png  $iconset/icon_256x256.png;
+    cp ./src/$current/512.png  $iconset/icon_256x256@2x.png;
+    cp ./src/$current/512.png  $iconset/icon_512x512.png;
+    cp ./src/$current/1024.png $iconset/icon_512x512@2x.png;
+
+    iconutil -c icns -o "$dest/$current.icns" $iconset;
+
+    rm -rf $iconset;
+
+    ((i++));
+done
+
+echo "$i icon sets generated"
+
+# restauring for..in delimiter
+IFS=$OLDIFS
+
