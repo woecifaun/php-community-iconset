@@ -1,7 +1,7 @@
 #!/bin/sh
-release=`git describe --tags`;
+release=`git describe --tags --abbrev=0`;
 if [[ ! $release =~ ^v([0-9]+)$ ]] ; then
-    echo "Last tag does not match the release pattern.";
+    echo "Last tag does not match the release pattern: $release";
     exit 1;
 fi
 release=$(echo "${BASH_REMATCH[1]} + 1" | bc);
