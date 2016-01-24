@@ -1,8 +1,9 @@
 # PHP Community Iconset
 
-A collection of icons for your operating system<sup>*</sup> related to the php community and its user groups.
+A collection of icons for your operating system[<sup>1</sup>](#note1) related to the php community and its user groups.
 
-> <sup>*</sup> Currently only available for Mac OS X. Any contribution to port the set to other systems is welcome.
+## :package: [Get the latest release](https://github.com/woecifaun/php-community-iconset/releases)
+
 
 ## Why?
 
@@ -28,5 +29,13 @@ You can also generate the final icon set, by running the following command in th
 ./iconify
 ```
 
+Once generated, the .zip for the release can be built by running
+```shell
+./release
+```
 
+Tags are built on the following scheme `v{int}` where `int` just increments the last release. Release should only be created when a new icon is added.
 
+---
+
+> <sup id="note1">1</sup> Currently only available for Mac OS X. Any contribution to port the set to other systems is welcome.

@@ -7,7 +7,7 @@ i=0
 
 
 # Create destination directory
-dest="./generated/mac";
+dest="./generated/PHP Community Iconset - OS X";
 if [[ ! -d $dest ]]; then
     mkdir -p $dest;
 fi

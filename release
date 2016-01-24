@@ -1,0 +1,9 @@
+#!/bin/sh
+release=`git describe --tags`;
+if [[ ! $release =~ ^v([0-9]+)$ ]] ; then
+    echo "Last tag does not match the release pattern.";
+    exit 1;
+fi
+release=$(echo "${BASH_REMATCH[1]} + 1" | bc);
+
+(cd ./generated && exec zip -r php-community-iconset-osx-v$release.zip "PHP Community Iconset - OS X" -x "*.DS_Store")
